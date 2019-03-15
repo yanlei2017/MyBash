@@ -1,0 +1,26 @@
+pkg-config --modversion opencv 
+pkg-config --cflags opencv 
+pkg-config --libs opencv 
+
+因为usr/local/opencv3/share/OpenCV/OpenCVConfig.cmake中设置了opencv的配置，自定义路径安装opencv时，找不到这个文件OpenCVConfig.cmake，opencv-config.cmake
+需要在项目的CMakeList.txt中添加OpenCVConfig.cmake的路径
+
+
+set(CMAKE_PREFIX_PATH "/usr/local/opencv3/share/OpenCV")
+
+
+改变版本
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv3/lib/pkgconfig
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/opencv3/lib
+
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv2/lib/pkgconfig
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/opencv2/lib
+
+16.04的默认opencv安装位置
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+
+生效：
+sudo ldconfig
